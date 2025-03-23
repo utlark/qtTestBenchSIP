@@ -89,7 +89,3 @@ CMakeLists.txt.user*
 .~lock*
 *.drawio.bkp
 *.state.json
-
-# And Clion
-/.idea/
-
