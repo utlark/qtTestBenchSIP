@@ -8,34 +8,36 @@ find_package(Qt6 REQUIRED COMPONENTS Quick)
 
 qt_standard_project_setup(REQUIRES 6.8)
 
-qt_add_executable(appQtTestBenchSIP
+qt_add_executable(testBenchSIP
     main.cpp
 )
 
-qt_add_qml_module(appQtTestBenchSIP
+qt_add_qml_module(testBenchSIP
     URI qtTestBenchSIP
     VERSION 1.0
     QML_FILES
         Main.qml
 )
 
+configure_file("./config.json" config.json COPYONLY)
+
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
 # If you are developing for iOS or macOS you should consider setting an
 # explicit, fixed bundle identifier manually though.
-set_target_properties(appQtTestBenchSIP PROPERTIES
-#    MACOSX_BUNDLE_GUI_IDENTIFIER com.example.appQtTestBenchSIP
+set_target_properties(testBenchSIP PROPERTIES
+#    MACOSX_BUNDLE_GUI_IDENTIFIER com.example.testBenchSIP
     MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}
     MACOSX_BUNDLE_SHORT_VERSION_STRING ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
     MACOSX_BUNDLE TRUE
     WIN32_EXECUTABLE TRUE
 )
 
-target_link_libraries(appQtTestBenchSIP
+target_link_libraries(testBenchSIP
     PRIVATE Qt6::Quick
 )
 
 include(GNUInstallDirs)
-install(TARGETS appQtTestBenchSIP
+install(TARGETS testBenchSIP
     BUNDLE DESTINATION .
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}

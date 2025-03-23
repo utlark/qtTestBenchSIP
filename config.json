@@ -1,0 +1,17 @@
+{
+    "flip": false,
+    "mirror": false,
+    "windowWidth": 1920,
+    "windowHeight": 1080,
+    "containerWidth": 1920,
+    "containerHeight": 540,
+    "containerAlignment": "top", 
+    "sources": [
+        "http://ftp.halifax.rwth-aachen.de/blender/demo/movies/ToS/tears_of_steel_720p.mov",
+        "file:///home/dash/Downloads/Rockchip/bbb_sunflower_1080p_60fps_normal.mp4",
+        "file:///home/dash/Downloads/Rockchip/bbb_sunflower_1080p_60fps_normal.mp4",
+        "http://ftp.halifax.rwth-aachen.de/blender/demo/movies/ToS/tears_of_steel_720p.mov"
+    ],
+    "rows": 2,
+    "cols": 2
+}
