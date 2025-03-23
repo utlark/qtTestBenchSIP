@@ -81,3 +81,15 @@ CMakeLists.txt.user*
 .rcc/
 .uic/
 /build*/
+
+# From CLion
+/cmake-build-*/
+~$*
+~*.tmp
+.~lock*
+*.drawio.bkp
+*.state.json
+
+# And Clion
+/.idea/
+

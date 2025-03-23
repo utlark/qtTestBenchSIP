@@ -1,60 +1,89 @@
 import QtQuick
-import QtMultimedia
 import QtQuick.Controls
+
+import qtTestBenchSIP
 
 ApplicationWindow {
     id: root
-    width: windowWidth
-    height: windowHeight
+    width: viewModel.windowWidth
+    height: viewModel.windowHeight
     visible: true
     color: "#303030"
-    title: qsTr("Test bench - SIP")
+    title: "Test bench - SIP"
 
-    Item {
+    MainViewModel {
+        id: viewModel
+    }
+
+    Rectangle {
         id: videoContainer
-        width: containerWidth
-        height: containerHeight
+        width: viewModel.containerWidth
+        height: viewModel.containerHeight
+        color: "#202020"
 
         transform: [
             Rotation {
-                angle: flip ? 180 : 0
-                origin.x: width / 2
-                origin.y: height / 2
-            },
-            Scale {
-                xScale: mirror ? -1 : 1
+                angle: viewModel.flip ? 180 : 0
+                origin.x: videoContainer.width / 2
+                origin.y: videoContainer.height / 2
             }
         ]
 
+        LayoutMirroring.enabled: viewModel.mirror
+        LayoutMirroring.childrenInherit: viewModel.mirror
+
         anchors.horizontalCenter: parent.horizontalCenter
 
-        anchors.top: if (containerAlignment === "top")
-            parent.top
-        anchors.bottom: if (containerAlignment === "bottom")
-            parent.bottom
-        anchors.verticalCenter: if (containerAlignment === "center")
-            parent.verticalCenter
-        anchors.left: if (containerAlignment === "left")
-            parent.left
-        anchors.right: if (containerAlignment === "right")
-            parent.right
+        states: [
+            State {
+                name: "top"
+                when: viewModel.containerAlignment === "top"
+                AnchorChanges {
+                    target: videoContainer
+                    anchors.top: root.contentItem.top
+                }
+            },
+            State {
+                name: "bottom"
+                when: viewModel.containerAlignment === "bottom"
+                AnchorChanges {
+                    target: videoContainer
+                    anchors.bottom: root.contentItem.bottom
+                }
+            },
+            State {
+                name: "center"
+                when: viewModel.containerAlignment === "center"
+                AnchorChanges {
+                    target: videoContainer
+                    anchors.verticalCenter: root.contentItem.verticalCenter
+                }
+            },
+            State {
+                name: "left"
+                when: viewModel.containerAlignment === "left"
+                AnchorChanges {
+                    target: videoContainer
+                    anchors.left: root.contentItem.left
+                }
+            },
+            State {
+                name: "right"
+                when: viewModel.containerAlignment === "right"
+                AnchorChanges {
+                    target: videoContainer
+                    anchors.right: root.contentItem.right
+                }
+            }
+        ]
 
         Grid {
             id: videoGrid
             anchors.fill: parent
-            columns: gridCols
-            rows: gridRows
+            columns: viewModel.gridCols
+            rows: viewModel.gridRows
 
-            Repeater {
-                model: videoSources
-                delegate: Video {
-                    width: videoContainer.width / gridCols
-                    height: videoContainer.height / gridRows
-                    source: modelData
-                    autoPlay: true
-                    fillMode: VideoOutput.PreserveAspectCrop
-                }
-            }
+            Component.onCompleted: viewModel.populateVideoGrid(videoGrid)
         }
     }
 }

@@ -1,17 +1,15 @@
 {
-    "flip": false,
-    "mirror": false,
-    "windowWidth": 1920,
-    "windowHeight": 1080,
-    "containerWidth": 1920,
-    "containerHeight": 540,
-    "containerAlignment": "top", 
-    "sources": [
-        "http://ftp.halifax.rwth-aachen.de/blender/demo/movies/ToS/tears_of_steel_720p.mov",
-        "file:///home/dash/Downloads/Rockchip/bbb_sunflower_1080p_60fps_normal.mp4",
-        "file:///home/dash/Downloads/Rockchip/bbb_sunflower_1080p_60fps_normal.mp4",
-        "http://ftp.halifax.rwth-aachen.de/blender/demo/movies/ToS/tears_of_steel_720p.mov"
-    ],
-    "rows": 2,
-    "cols": 2
+  "flip": false,
+  "mirror": false,
+  "windowWidth": 1920,
+  "windowHeight": 1080,
+  "containerWidth": 1920,
+  "containerHeight": 540,
+  "containerAlignment": "top",
+  "sources": [
+    "rtspsrc location=rtsp://20.0.2.10/h264 latency=200 ! rtph264depay ! h264parse ! mppvideodec format=7 dma-feature=true ! glupload ! qml6glsink name=sink",
+    "rtspsrc location=rtsp://20.0.2.11/h264 latency=200 ! rtph264depay ! h264parse ! mppvideodec format=7 dma-feature=true ! glupload ! qml6glsink name=sink"
+  ],
+  "rows": 1,
+  "cols": 2
 }

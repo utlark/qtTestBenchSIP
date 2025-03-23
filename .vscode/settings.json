@@ -1,0 +1,13 @@
+{
+  "cSpell.enabled": true,
+  "cSpell.language": "en,ru,ru-RU,en-GB,en-US",
+  "cmake.options.statusBarVisibility": "compact",
+  "cmake.buildDirectory": "${workspaceFolder}/cmake-build-${variant:buildType}",
+  "cmake.configureArgs": [
+    "-DCMAKE_BINARY_DIR=${workspaceFolder}/cmake-build-${variant:buildType}"
+  ],
+  "git.allowForcePush": true,
+  "git.autofetch": "all",
+  "git.fetchOnPull": true,
+  "git.rebaseWhenSync": true
+}
