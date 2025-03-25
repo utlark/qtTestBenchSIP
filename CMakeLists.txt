@@ -53,13 +53,6 @@ target_link_libraries(${TARGET_NAME}
     ${GSTREAMER_LIBRARIES}
 )
 
-include(GNUInstallDirs)
-install(TARGETS ${TARGET_NAME}
-    BUNDLE DESTINATION ${CMAKE_SOURCE_DIR}
-    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
-    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
-)
-
 if (CMAKE_BUILD_TYPE STREQUAL "Debug")
     target_compile_options(${TARGET_NAME} PRIVATE -O0 -g)
     target_link_options(${TARGET_NAME} PRIVATE -O0 -g)
